@@ -14,22 +14,36 @@ import java.security.Principal;
 public class Controller {
     private final UserService userService;
 
+    @GetMapping("/test/a")
+    public String testAPage() {
+        return "testA";
+    }
+
+    @GetMapping("/test/b")
+    public String testBPage() {
+        return "testB";
+    }
+
     @GetMapping("/")
     public String homePage() {
         return "home";
     }
+
     @GetMapping("/unsecured")
     public String unsecuredPage() {
         return "unsecured";
     }
+
     @GetMapping("/auth_page")
     public String authPage() {
         return "auth";
     }
+
     @GetMapping("/admin")
     public String adminPage() {
         return "admin";
     }
+
     @GetMapping("/user_info")
     public String userInfoPage(Principal principal) {
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found!")));
